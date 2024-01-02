@@ -16,10 +16,4 @@ steps:
     collectBuildInfo: true
     buildName: '$(Build.DefinitionName)'
     buildNumber: '$(Build.BuildNumber)'
-    includeEnvVars: true
     javaHomeOption: 'JDKVersion'
-- task: JFrogPublishBuildInfo@1
-  inputs:
-    artifactoryConnection: 'jfrog'
-    buildName: '$(Build.DefinitionName)'
-    buildNumber: '$(Build.BuildNumber)'
