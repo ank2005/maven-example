@@ -1,0 +1,27 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: JFrogMaven@1
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'install'
+    artifactoryResolverService: 'jfrog'
+    targetResolveReleaseRepo: 'azure-libs-release'
+    targetResolveSnapshotRepo: 'azure-libs-snapshot'
+    artifactoryDeployService: 'jfrog'
+    targetDeployReleaseRepo: 'azure-libs-release'
+    targetDeploySnapshotRepo: 'azure-libs-snapshot'
+    collectBuildInfo: true
+    buildName: '$(Build.DefinitionName)'
+    buildNumber: '$(Build.BuildNumber)'
+    includeEnvVars: true
+    javaHomeOption: 'JDKVersion'
