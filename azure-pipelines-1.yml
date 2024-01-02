@@ -13,7 +13,7 @@ steps:
 - task: JFrogMaven@1
   inputs:
     mavenPomFile: 'pom.xml'
-    goals: 'install'
+    goals: 'package'
     artifactoryResolverService: 'jfrog'
     targetResolveReleaseRepo: 'azure-libs-release'
     targetResolveSnapshotRepo: 'azure-libs-snapshot'
