@@ -1,4 +1,5 @@
 trigger:
+
 - master
 pool:
   vmImage: ubuntu-latest
@@ -6,7 +7,7 @@ steps:
 - task: JFrogMaven@1
   inputs:
     mavenPomFile: 'pom.xml'
-    goals: 'install'
+    goals: 'clean install'
     artifactoryResolverService: 'ankit'
     targetResolveReleaseRepo: 'azure-libs-release'
     targetResolveSnapshotRepo: 'azure-libs-snapshot'
@@ -17,3 +18,9 @@ steps:
     buildName: '$(Build.DefinitionName)'
     buildNumber: '$(Build.BuildNumber)'
     javaHomeOption: 'JDKVersion'
+
+- task: JFrogPublishBuildInfo@1
+  inputs:
+    artifactoryConnection: 'ankit'
+    buildName: '$(Build.DefinitionName)'
+    buildNumber: '$(Build.BuildNumber)'
